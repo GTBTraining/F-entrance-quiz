@@ -1,0 +1,43 @@
+body {
+  background-color: #ffffff;
+}
+.clickbutton {
+  position: absolute;
+  text-align: center;
+  right: 25px;
+  top: 3%;
+  color: white;
+  background-color: #e54b4f;
+  border: none;
+  padding: 6px 25px;
+}
+
+h4 {
+  margin-left: 20px;
+  /* text-align: center; */
+  display: inline-block;
+}
+
+/* .content {
+    background-color: white;
+    margin: 0 5px ;
+  } */
+.page {
+  background-color: #f6f6f6;
+  margin: 0 5px;
+}
+
+.teamMemberbutton {
+  display: inline-block;
+  border: none;
+  background-color: #ecebec;
+  padding: 4px 15px;
+  margin: 100px, 100px;
+}
+.addteamMemberbutton {
+  display: inline-block;
+  border: none;
+  background-color: #ecebec;
+  padding: 4px 15px;
+  margin: 100px, 100px;
+}
