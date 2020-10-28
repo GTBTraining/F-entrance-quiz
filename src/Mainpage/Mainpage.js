@@ -3,7 +3,7 @@
 /* eslint-disable react/no-unused-state */
 /* eslint-disable react/button-has-type */
 import React, { Component } from 'react';
-import "./Mainpage.css";
+import './Mainpage.css';
 
 class Mainpage extends Component {
   // eslint-disable-next-line react/state-in-constructor
@@ -85,7 +85,7 @@ class Mainpage extends Component {
     ));
 
     const teamlist = this.state.teamlist.map((team) => (
-      <div className="group">
+      <div className="group" key={team.name}>
         <header className="group-header">
           <span>{team.name}</span>
         </header>
