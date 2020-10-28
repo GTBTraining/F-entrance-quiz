@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /* eslint-disable react/no-unused-state */
 /* eslint-disable react/button-has-type */
 import React, { Component } from 'react';
@@ -9,7 +10,7 @@ import './Mainpage.css';
 class Mainpage extends Component {
   // eslint-disable-next-line react/state-in-constructor
   state = {
-    addingStudentName: '',
+    addingTeamMemberName: '',
     isAddTeamMember: false,
     teamvisible: false,
     teamlist: [
@@ -60,7 +61,7 @@ class Mainpage extends Component {
     ],
   };
 
-  getTeamMember = () => {
+  getAllTeamMembers = () => {
     fetch('http://localhost:8080/team')
       .then((response) => response.json())
       .then((data) =>
@@ -83,13 +84,32 @@ class Mainpage extends Component {
 
   handleNameChange = (event) => {
     this.setState({
-      addingStudentName: event.target.value,
+      addingTeamMemberName: event.target.value,
     });
   };
 
   addNewTeamMember = (event) => {
-    console.log(1);
-    console.log(event);
+    if (event.keyCode === 13) {
+      const url = 'http://localhost:8080/teammember';
+      fetch(url, {
+        mode: 'cors',
+        header: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        method: 'POST',
+        body: this.state.addingTeamMemberName,
+      }).then((response) => {
+        if (response.status === 201) {
+          this.getAllTeamMembers();
+          alert('添加队员成功！');
+        }
+      });
+      this.setState({
+        isAddTeamMember: false,
+        addingTeamMemberName: '',
+      });
+    }
   };
 
   render() {
@@ -105,22 +125,6 @@ class Mainpage extends Component {
       </button>
     ));
 
-    const isAddTeamMember = this.state.isAddTeamMember ? (
-      // eslint-disable-next-line react/void-dom-elements-no-children
-      <input
-        type="text"
-        value={this.state.addingStudentName}
-        onChange={this.handleNameChange}
-        onKeyUp={this.addNewTeamMember}
-      >
-        + 添加学员
-      </input>
-    ) : (
-      <button className="addteamMemberbutton" onClick={this.handleAddStudent}>
-        + 添加学员
-      </button>
-    );
-
     return (
       <div className="page">
         <div className="content">
@@ -132,8 +136,21 @@ class Mainpage extends Component {
         <div className="teamlist">{teamlist}</div>
         <h4 className="teammemberlist">学员列表</h4>
         <br />
-        {memberlist}
-        {isAddTeamMember}
+        <section>
+          {memberlist}
+          {this.state.isAddTeamMember ? (
+            <input
+              type="text"
+              value={this.state.addingTeamMemberName}
+              onChange={this.handleNameChange}
+              onKeyUp={this.addNewTeamMember}
+            />
+          ) : (
+            <button className="addteamMemberbutton" onClick={this.handleAddStudent}>
+              + 添加学员
+            </button>
+          )}
+        </section>
       </div>
     );
   }
