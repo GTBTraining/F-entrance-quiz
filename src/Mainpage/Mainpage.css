@@ -4,7 +4,7 @@ body {
 .clickbutton {
   position: absolute;
   text-align: center;
-  right: 25px;
+  right: 33px;
   top: 3%;
   color: white;
   background-color: #e54b4f;
@@ -12,8 +12,22 @@ body {
   padding: 6px 25px;
 }
 
-h4 {
-  margin-left: 20px;
+.group {
+  border: 1px solid #8790a0;
+  border-color: #8790a0;
+}
+
+.tableTitle {
+  background-color: #8790a0;
+  color: #ffffff;
+  text-align: center;
+  height: 30px;
+  vertical-align: middle;
+}
+
+h2 {
+  border-top: 200;
+  /* margin-left: 60px; */
   /* text-align: center; */
   display: inline-block;
 }
@@ -26,18 +40,29 @@ h4 {
   background-color: #f6f6f6;
   margin: 0 5px;
 }
+.teamlist {
+  margin-left: 20px;
+  margin-right: 20px;
+}
 
 .teamMemberbutton {
   display: inline-block;
   border: none;
   background-color: #ecebec;
-  padding: 4px 15px;
-  margin: 100px, 100px;
+  padding: 6px 20px;
+  margin: 20px;
+  width: 80px;
+  text-align: center;
 }
 .addteamMemberbutton {
   display: inline-block;
-  border: none;
-  background-color: #ecebec;
-  padding: 4px 15px;
+  /* border: none; */
+  border: 1px solid #8790a0;
+  border-color: #8790a0;
+  background-color: #f6f6f6;
+  padding: 6px 20px;
   margin: 100px, 100px;
+  margin-left: 25px;
+  margin-top: 20px;
+  /* display:block; */
 }

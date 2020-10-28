@@ -1,8 +1,8 @@
 /* eslint-disable no-alert */
-
 /* eslint-disable react/no-unused-state */
 /* eslint-disable react/button-has-type */
 import React, { Component } from 'react';
+// eslint-disable-next-line import/no-unresolved
 import './Mainpage.css';
 
 class Mainpage extends Component {
@@ -79,21 +79,21 @@ class Mainpage extends Component {
 
   render() {
     const memberlist = this.state.teamMembers.map((teammember) => (
-      <button className="teamMemberbutton" key={teammember.id}>
+      <span className="teamMemberbutton" key={teammember.id}>
         {teammember.id}.{teammember.name}
-      </button>
+      </span>
     ));
 
     const teamlist = this.state.teamlist.map((team) => (
       <div className="group" key={team.name}>
         <header className="group-header">
-          <span>{team.name}</span>
+          <div className="tableTitle">{team.name}</div>
         </header>
         <section>
           {team.memberDtoList.map((teammember) => (
-            <button className="teamMemberbutton" key={teammember.id}>
+            <span className="teamMemberbutton" key={teammember.id}>
               {teammember.id}.{teammember.name}
-            </button>
+            </span>
           ))}
         </section>
       </div>
@@ -102,7 +102,7 @@ class Mainpage extends Component {
     return (
       <div className="page">
         <div className="content">
-          <h4>分组列表</h4>
+          <h2>分组列表</h2>
           <button className="clickbutton" onClick={this.handleDivideTeam}>
             分组学员
           </button>
