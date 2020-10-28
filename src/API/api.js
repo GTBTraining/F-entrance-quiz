@@ -11,7 +11,7 @@ const postAPI = async (url, body) => {
     const temp = await newurl.json();
     return temp;
   }
+  return '';
 };
-
 
 export default { postAPI };
