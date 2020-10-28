@@ -14,33 +14,33 @@ class Mainpage extends Component {
     isAddTeamMember: false,
     teamvisible: false,
     teamlist: [
-      [
-        { id: '1', name: '成吉思汗' },
-        { id: '2', name: '鲁班七号' },
-        { id: '3', name: '太乙真人' },
-      ],
-      [
-        { id: '4', name: '钟无艳' },
-        { id: '5', name: '花木兰' },
-        { id: '6', name: '雅典娜' },
-      ],
-      [
-        { id: '7', name: '芈月' },
-        { id: '8', name: '白起' },
-        { id: '9', name: '刘禅' },
-      ],
-      [
-        { id: '10', name: '庄周' },
-        { id: '11', name: '马超' },
-      ],
-      [
-        { id: '12', name: '刘备' },
-        { id: '13', name: '哪吒' },
-      ],
-      [
-        { id: '14', name: '大乔' },
-        { id: '15', name: '蔡文姬' },
-      ],
+      // [
+      //   { id: '1', name: '成吉思汗' },
+      //   { id: '2', name: '鲁班七号' },
+      //   { id: '3', name: '太乙真人' },
+      // ],
+      // [
+      //   { id: '4', name: '钟无艳' },
+      //   { id: '5', name: '花木兰' },
+      //   { id: '6', name: '雅典娜' },
+      // ],
+      // [
+      //   { id: '7', name: '芈月' },
+      //   { id: '8', name: '白起' },
+      //   { id: '9', name: '刘禅' },
+      // ],
+      // [
+      //   { id: '10', name: '庄周' },
+      //   { id: '11', name: '马超' },
+      // ],
+      // [
+      //   { id: '12', name: '刘备' },
+      //   { id: '13', name: '哪吒' },
+      // ],
+      // [
+      //   { id: '14', name: '大乔' },
+      //   { id: '15', name: '蔡文姬' },
+      // ],
     ],
     teamMembers: [
       { id: '1', name: '成吉思汗' },
@@ -61,6 +61,10 @@ class Mainpage extends Component {
     ],
   };
 
+  componentDidMount() {
+    this.getAllTeamMembers();
+  }
+
   getAllTeamMembers = () => {
     fetch('http://localhost:8080/team')
       .then((response) => response.json())
@@ -78,8 +82,14 @@ class Mainpage extends Component {
   };
 
   handleDivideTeam = () => {
-    // const newteamlist = postAPI('http://localhost:8080/team', this.teamMembers);
-    // this.setState({ teamlist: newteamlist });
+    const url = 'http://localhost:8080/groups';
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({
+          teamlist: data,
+        });
+      });
   };
 
   handleNameChange = (event) => {
@@ -119,10 +129,19 @@ class Mainpage extends Component {
       </button>
     ));
 
-    const teamlist = this.state.teamlist.map((teammember) => (
-      <button className="teamMemberbutton" key={teammember.id}>
-        {teammember.id}.{teammember.name}
-      </button>
+    const teamlist = this.state.teamlist.map((team) => (
+      <div className="group">
+        <header className="group-header">
+          <span>{team.name}</span>
+        </header>
+        <section>
+          {team.teamlist.map((teammember) => (
+            <button className="teamMemberbutton" key={teammember.id}>
+              {teammember.id}.{teammember.name}
+            </button>
+          ))}
+        </section>
+      </div>
     ));
 
     return (
