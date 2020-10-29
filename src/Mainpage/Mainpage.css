@@ -13,6 +13,7 @@ body {
 }
 
 .group {
+  /*TODO GTB-知识点: - 样式可以inline*/
   border: 1px solid #8790a0;
   border-color: #8790a0;
 }
@@ -32,6 +33,7 @@ h2 {
   display: inline-block;
 }
 
+/*TODO GTB-工程实践: - 不要提交注释代码*/
 /* .content {
     background-color: white;
     margin: 0 5px ;

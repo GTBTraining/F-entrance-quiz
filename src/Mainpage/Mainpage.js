@@ -1,3 +1,4 @@
+// TODO GTB-工程实践: * 不建议disable eslint
 /* eslint-disable no-alert */
 /* eslint-disable react/no-unused-state */
 /* eslint-disable react/button-has-type */
@@ -8,6 +9,7 @@ import './Mainpage.css';
 class Mainpage extends Component {
   // eslint-disable-next-line react/state-in-constructor
   state = {
+    // TODO GTB-知识点: - addingTeamMemberName不需要存储
     addingTeamMemberName: '',
     isAddTeamMember: false,
     teamvisible: false,
@@ -19,6 +21,7 @@ class Mainpage extends Component {
     this.getAllTeamMembers();
   }
 
+  // TODO GTB-工程实践: * 建议把数据请求提取到单独的service
   getAllTeamMembers = () => {
     fetch('http://localhost:8080/members')
       .then((response) => response.json())
@@ -78,6 +81,7 @@ class Mainpage extends Component {
   };
 
   render() {
+    // TODO GTB-工程实践: - class命名不符合规范，不建议用驼峰
     const memberlist = this.state.teamMembers.map((teammember) => (
       <span className="teamMemberbutton" key={teammember.id}>
         {teammember.id}.{teammember.name}
@@ -100,6 +104,7 @@ class Mainpage extends Component {
     ));
 
     return (
+      // TODO GTB-知识点: * 语义标签使用不够
       <div className="page">
         <div className="content">
           <h2>分组列表</h2>
